@@ -1,5 +1,8 @@
 # go-redis-queue
+
 redis queue task for Go
+
+use github.com/go-redis/redis
 
 # use
 
@@ -18,3 +21,4 @@ redis queue task for Go
 	})
 
 ```
+
