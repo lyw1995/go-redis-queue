@@ -74,6 +74,10 @@ func (q *Queue) PopJobs(limit int) ([]string, error) {
 		[]string{"name", "timestamp", "limit"}, q.Name,
 		fmt.Sprintf("%d", time.Now().UnixNano()), strconv.Itoa(limit)).Result()
 	strs := make([]string, 0)
+	// 防止redis 重启终止应用程序
+	if result == nil || err != nil{
+		return strs,nil
+	}
 	for _, v := range result.([]interface{}) {
 		strs = append(strs, v.(string))
 	}
